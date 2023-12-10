@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\turle\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\turle\\.nuget\\packages"
+    ]
+  }
+}

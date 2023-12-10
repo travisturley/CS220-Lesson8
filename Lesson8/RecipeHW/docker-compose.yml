@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  recipeapplication:
+    image: ${DOCKER_REGISTRY-}recipeapplication
+    build:
+      context: .
+      dockerfile: src/RecipeApplication/Dockerfile
