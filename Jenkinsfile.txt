@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+
+triggers {
+    pollSCM('*/15 * * * *')
+}
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build and Test') {
+            steps {
+                script {
+                    sh 'docker build -t recipe-image .'
+                    sh 'docker run recipe-image npm test'  // adjust as per your project setup
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                script {
+                    sh 'docker stop recipe-container || true'
+                    sh 'docker rm recipe-container || true'
+                    sh 'docker run -d --name recipe-container -p 8080:8080 recipe-image'
+                }
+            }
+        }
+    }
+}
